@@ -103,6 +103,28 @@
             map.addControl(nav, "bottom-right");
 
             get_restaurants();
+
+            let initial = [
+                [106.816666, -6.180000],
+                [103.0000, 35.0000],
+                [102.630867, 17.974855],
+                [101.693207, 3.140853],
+                [106.918556, 47.921230],
+                [125.560310, -8.556856],
+                [143.95555, -6.314993],
+
+                [39.208882, 51.675497],
+                [21.017532, 52.237049],
+                [57.166978, 50.283934],
+                [58.238056, 37.862499],
+                [58.545284, 23.614328],
+                [46.738586, 24.774265],
+                [30.246486, 26.696362],
+                [17.228331000000026, 26.3351],
+            ]
+            for (let i = 0; i < initial.length; i++) {
+                new mapboxgl.Marker({ color: 'red' }).setLngLat(initial[i]).addTo(map)
+            }
         });
 
         function get_restaurants() {
@@ -146,7 +168,7 @@
                     bottom: [0, -35],
                 },
             })
-                .setLngLat(restaurant.center)
+                .setLngLat(restaurant.coordinates)
                 .setHTML(
                     `<div class="iw-inner" onclick="map.flyTo({center: [${restaurant.coordinates}]}); scroll_to_card(${i});">
                   <h5>${restaurant.name}</h5>
